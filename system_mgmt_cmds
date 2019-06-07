@@ -1,1 +1,20 @@
-/home/shashank/.local/bin/system_mgmt_cmds
+#!/bin/bash
+function apt_check() {
+    sudo apt-get -y clean && sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove
+}
+
+function apt_install() {
+    sudo apt-get -y autoclean && sudo apt-get update && sudo apt-get install $@ && sudo apt-get -y autoremove
+}
+
+function olin_mount() {
+    sudo mount -t cifs //fsvs01/Users/Students/2022/sswaminathan ~/olin_share/ -o username=sswaminathan,workgroup=olin.edu,uid=sswaminathan
+    sudo mount -t cifs //fsvs01/Public ~/olin_public_share/ -o username=sswaminathan,workgroup=olin.edu,uid=sswaminathan
+}
+
+function olin_unmount() {
+    sudo umount ~/olin_share/
+    sudo umount ~/olin_app_share/
+    sudo umount ~/olin_public_share/
+}
+

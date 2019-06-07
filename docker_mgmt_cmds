@@ -1,1 +1,104 @@
-/home/shashank/.local/bin/docker_mgmt_cmds
+#!/bin/bash
+
+function docker_sel_dack() {
+    { docker rm $@ 2> /dev/null; } || { echo "Docks are empty."; }
+}
+
+function docker_vol_clean() {
+		{ docker volume rm trashV 2> /dev/null; } || { echo "Volumes empty."; }
+}
+
+function docker_dack() {
+    if [ -z "$1" ]; then
+				docker_sel_dack $(docker ps -a --format "{{.Names}}" | grep -v " ")
+    else
+				docker_sel_dack $(docker ps -a --format "{{.Names}}" | grep -v "$1")
+    fi
+		docker_vol_clean
+}
+
+function docker_dock() {
+    OPTIND=1
+    while getopts ":s:n:i:v:c:r:h:" o; do
+				case "${o}" in
+
+            s)
+								s=${OPTARG}
+								;;
+            n)
+								n=${OPTARG}
+								;;
+						i)
+								i=${OPTARG}
+								;;
+						v)
+								v=${OPTARG}
+								;;
+						c)
+								c=${OPTARG}
+								;;
+						r)
+								r=${OPTARG}
+								;;
+						h)
+								h=${OPTARG}
+								;;
+            *)
+								;;
+				esac
+    done
+    shift $((OPTIND-1))
+
+    cmd="bash .dockin"
+    if [ ! -z "${s}" ]; then
+				cmd="${cmd} -s ${s}"
+    fi
+
+    if [ ! -z "${n}" ]; then
+				cmd="${cmd} -n ${n}"
+    fi
+
+    if [ ! -z "${i}" ]; then
+				cmd="${cmd} -i ${i}"
+    fi
+
+		if [ ! -z "${v}" ]; then
+				cmd="${cmd} -v ${v}"
+		fi
+		
+    if [ ! -z "${c}" ]; then
+				cmd="${cmd} -c ${c}"
+    fi
+
+    if [ ! -z "${r}" ]; then
+				cmd="${cmd} -r ${r}"
+    fi
+
+    if [ ! -z "${h}" ]; then
+				cmd="${cmd} -h ${h}"
+    fi
+
+    $cmd
+}
+
+function neato() {
+    docker_sel_dack neato
+		docker_vol_clean
+    docker_dock -s 1 -n neato -i paulruvolo/neato_docker:qea -h $1
+}
+
+function rkinetic() {
+    if [ -z $(docker ps -a --format "{{.Names}}" | grep "ros-kinetic") ]; then
+				docker_dock -s 1 -n ros-kinetic -i sswaminathan235/dev-ros:kinetic -v rkineticV
+    else
+				docker_dock -s 2 -n ros-kinetic
+    fi
+}
+
+function rhydro() {
+    if [ -z $(docker ps -a --format "{{.Names}}" | grep "ros-hydro") ]; then
+				docker_dock -s 1 -n ros-hydro -i sswaminathan235/dev-ros:hydro -v rhydroV
+    else
+				docker_dock -s 2 -n ros-hydro
+    fi
+}
