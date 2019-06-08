@@ -118,3 +118,5 @@
 ;; run automatic pep8 formatting on save in elpy mode (I think)
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+(add-to-list 'load-path "/opt/ros/kinetic/share/emacs/site-lisp")
+(require 'rosemacs-config)
