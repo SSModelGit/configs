@@ -35,3 +35,22 @@ apt install ros-kinetic-joy
 # # Now build
 cd .. && catkin_make
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+
+# Creating Python2.7 virtual environment for ROS development
+
+rosdep update
+
+apt -y install python-pip python-dev build-essential
+pip install --upgrade python pip virtualenv
+
+apt -y install python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+mkdir ~/.virtualenvs
+virtualenv -p python2.7 --system-site-packages ~/.virtualenvs/rosk
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.virtualenvs/rosk/bin/activate
+echo "export PYTHONPATH=\$PYTHONPATH:catkin_ws" >> ~/.virtualenvs/rosk/bin/activate
+
+venv_activate=~/.virtualenvs/rosk/bin/activate
+echo "alias rosk=\"source $venv_activate\"" >> ~/.bashrc
+echo "rosk" >> ~/.bashrc
