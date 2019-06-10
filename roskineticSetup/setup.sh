@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Standard setup work
+mkdir ~/.emacs.d/
 ln ../init.el ~/.emacs.d/init.el
 echo "alias em='emacs -q -l ~/.emacs.d/init.el'" >> ~/.bashrc
 
@@ -54,3 +55,4 @@ echo "export PYTHONPATH=\$PYTHONPATH:catkin_ws" >> ~/.virtualenvs/rosk/bin/activ
 venv_activate=~/.virtualenvs/rosk/bin/activate
 echo "alias rosk=\"source $venv_activate\"" >> ~/.bashrc
 echo "rosk" >> ~/.bashrc
+source ~/.bashrc
