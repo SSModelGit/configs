@@ -1,7 +1,7 @@
 ;; init.el --- Emacs configuration
-
-;; INSTALL PACKAGES
-;; --------------------------------------
+;; Personal Emacs Config - by Shashank Swaminathan
+;;
+;; Special thanks to Dieter Brehm (https://github.com/Inkering), from whom most of this code is inspired/taken from
 
 ;; improve startup time
 (setq-default file-name-handler-alist nil
@@ -56,22 +56,38 @@
 (setq inhibit-startup-message t) ;; hide the startup message
 
 (use-package dracula-theme :ensure
-	     :config
-	     (load-theme 'dracula t)) ;; load material theme
+	:config
+	(load-theme 'dracula t)) ;; load material theme
 
 (use-package olivetti :ensure)
 
 ;; Smarter buffer management
 (use-package ibuffer :ensure
-	     :bind ("C-x C-b" . ibuffer)
-	     :config
-	     (autoload 'ibuffer "ibuffer" "List Buffers." t))
+	:bind ("C-x C-b" . ibuffer)
+	:config
+	(autoload 'ibuffer "ibuffer" "List Buffers." t))
+
+;; company = complete-any, a completion backend
+(use-package company :ensure
+  :config
+  (add-hook 'prog-mode-hook 'company-mode)
+  (setq company-idle-delay 0.1)
+  (bind-key "<C-tab>" 'company-manual-begin))
+
+;; sort company completions by usage stats
+(use-package company-statistics :ensure
+  :config
+(company-statistics-mode))
+
+;; snippets
+(yas-global-mode 1)
+(use-package yasnippet-snippets :ensure)
 
 ;; syntax for markdown, essential for Readme files
 (use-package markdown-mode :ensure
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
+				 ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
