@@ -114,22 +114,15 @@
   :config
 (setq magit-completing-read-function 'ivy-completing-read))
 
-;; Install Python things
-(defvar pyPackages
-  '(elpy flycheck  py-autopep8))
-(mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
-      pyPackages)
-
 ;; Setup Python things
-(elpy-enable) ;; enable the elpy package
+(use-package elpy :ensure
+	:config
+	(advice-add 'python-mode :before 'elpy-enable))
 
-;; do something with flycheck to run it with elpyn
-(when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
+(use-package flycheck :ensure
+	:config
+	(add-hook 'elpy-mode-hook 'flycheck-mode))
 
-;; run automatic pep8 formatting on save in elpy mode (I think)
-(require 'py-autopep8)
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+(use-package py-autopep8 :ensure
+	:config
+	(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save))
