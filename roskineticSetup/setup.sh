@@ -67,6 +67,6 @@ echo "source /opt/ros/kinetic/setup.bash" >> ~/.virtualenvs/rosk/bin/activate
 echo "export PYTHONPATH=\$PYTHONPATH:catkin_ws" >> ~/.virtualenvs/rosk/bin/activate
 
 venv_activate=~/.virtualenvs/rosk/bin/activate
-echo "alias rosk=\"source $venv_activate\"" >> ~/.bashrc
+echo "alias rosk='source $venv_activate'" >> ~/.bashrc
 echo "rosk" >> ~/.bashrc
 source ~/.bashrc
