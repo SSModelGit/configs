@@ -95,6 +95,14 @@ function rkinetic() {
     fi
 }
 
+function javabar() {
+		if [ -z $(docker ps -a --format "{{.Names}}" | grep "javabar") ]; then
+				docker_dock -s 1 -n javabar -i ubuntu:xenial -v javabar-work
+    else
+				docker_dock -s 2 -n javabar
+    fi
+}
+
 function rhydro() {
     if [ -z $(docker ps -a --format "{{.Names}}" | grep "ros-hydro") ]; then
 				docker_dock -s 1 -n ros-hydro -i sswaminathan235/dev-ros:hydro -v rhydroV
