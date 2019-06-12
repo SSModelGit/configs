@@ -1,6 +1,8 @@
 ;; Setup Java things
-
-;; use meghanada
+;; By Shashank Swaminathan
+;; Uses Meghanada-Mode
+;; Expect for it to take some time to initialize the first time it's run
+;; ;; Has to download all the server stuff, etc. (only happens once)
 
 (use-package meghanada :ensure
   :defer t

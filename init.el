@@ -80,8 +80,8 @@
 (company-statistics-mode))
 
 ;; snippets
-(yas-global-mode 1)
 (use-package yasnippet-snippets :ensure)
+(yas-global-mode 1)
 
 ;; syntax for markdown, essential for Readme files
 (use-package markdown-mode :ensure
