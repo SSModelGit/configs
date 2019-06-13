@@ -33,10 +33,10 @@ apt install -y maven
 
 # Setup the emacs init.el file to use meghanada
 mkdir ~/.emacs.d/javalisp/
-cp java-config.el ~/.emacs.d/javalisp/java-config.el
+cp ../java-config.el ~/.emacs.d/javalisp/java-config.el
 echo "" >> ~/.emacs.d/init.el
 echo ";; Load Java setup from custom config source file" >> ~/.emacs.d/init.el
-echo "(load-file \"~/.emacs.d/javalist/java-config.el\")" >> ~/.emacs.d/init.el
+echo "(load-file \"~/.emacs.d/javalisp/java-config.el\")" >> ~/.emacs.d/init.el
 
 # Source .bashrc
 source ~/.bashrc 
