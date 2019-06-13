@@ -4,18 +4,24 @@
 
 # Install the software common properties package to be able to add PPAs
 apt update
-apt install software-properties-common
+apt install -y software-properties-common
 
 # Install the better version of emacs
 add-apt-repository ppa:kelleyk/emacs
 apt update
-apt install emacs25
+apt install -y emacs25
 
 # Setup the emacs alias
 mkdir ~/.emacs.d/
 cp ../init.el ~/.emacs.d/init.el
 echo "alias em='emacs -q -l ~/.emacs.d/init.el'" >> ~/.bashrc
 
+# Add Python configuration file to init.el
+mkdir ~/.emacs.d/pylisp
+cp ../py-config.el ~/.emacs.d/pylisp/py-config.el
+echo "" >> ~/.emacs.d/init.el
+echo ";; Load Python setup from custom config source file" >> ~/.emacs.d/init.el
+echo "(load-file \"~/.emacs.d/pylisp/py-config.el\")" >> ~/.emacs.d/init.el
 
 ### Begin ros-kinetic specific setup work
 
@@ -24,6 +30,7 @@ apt update && apt -y upgrade && apt -y dist-upgrade && apt -y autoremove
 apt -y install ros-kinetic-rosemacs
 
 # Set it up / enable in the init.el config file for emacs
+echo "" >> ~/.emacs.d/init.el
 echo "(add-to-list 'load-path \"/opt/ros/kinetic/share/emacs/site-lisp\")" >> ~/.emacs.d/init.el
 echo "(require 'rosemacs-config)" >> ~/.emacs.d/init.el
 
@@ -45,7 +52,7 @@ ln -s ~/repos/modelica_bridge_examples modelica_bridge_examples
 ln -s ~/repos/trans-atlantic-sailboat trans-atlantic-sailboat
 
 # # Before calling catkin_make, install appropriate dependencies
-apt install ros-kinetic-joy
+apt install -y ros-kinetic-joy
 
 # # Now build
 cd .. && catkin_make
@@ -70,3 +77,5 @@ venv_activate=~/.virtualenvs/rosk/bin/activate
 echo "alias rosk='source $venv_activate'" >> ~/.bashrc
 echo "rosk" >> ~/.bashrc
 source ~/.bashrc
+
+pip install autopep8
