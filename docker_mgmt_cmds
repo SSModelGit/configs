@@ -10,7 +10,7 @@ function docker_vol_clean() {
 
 function docker_dack() {
     if [ -z "$1" ]; then
-				docker_sel_dack $(docker ps -a --format "{{.Names}}" | grep -v " ")
+				docker_sel_dack $(docker ps -a --format "{{.Names}}" | grep -v -e " ")
     else
 				docker_sel_dack $(docker ps -a --format "{{.Names}}" | grep -v "$1")
     fi
@@ -89,9 +89,9 @@ function neato() {
 
 function rkinetic() {
     if [ -z $(docker ps -a --format "{{.Names}}" | grep "ros-kinetic") ]; then
-				docker_dock -s 1 -n ros-kinetic -i sswaminathan235/dev-ros:kinetic -v rkineticV
+				docker_dock -s 1 -n kinetic-bar -i sswaminathan235/dev-ros:kinetic -v rkineticV
     else
-				docker_dock -s 2 -n ros-kinetic
+				docker_dock -s 2 -n kinetic-bar
     fi
 }
 
@@ -103,10 +103,18 @@ function javabar() {
     fi
 }
 
+function pybar() {
+		if [ -z $(docker ps -a --format "{{.Names}}" | grep "javabar") ]; then
+				docker_dock -s 1 -n pybar -i sswaminathan235/pybar:latest -v pybar-work
+    else
+				docker_dock -s 2 -n pybar
+    fi
+}
+
 function rhydro() {
     if [ -z $(docker ps -a --format "{{.Names}}" | grep "ros-hydro") ]; then
-				docker_dock -s 1 -n ros-hydro -i sswaminathan235/dev-ros:hydro -v rhydroV
+				docker_dock -s 1 -n hydro-bar -i sswaminathan235/dev-ros:hydro -v rhydroV
     else
-				docker_dock -s 2 -n ros-hydro
+				docker_dock -s 2 -n hydro-bar
     fi
 }
