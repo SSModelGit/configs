@@ -78,4 +78,10 @@ echo "alias rosk='source $venv_activate'" >> ~/.bashrc
 echo "rosk" >> ~/.bashrc
 source ~/.bashrc
 
-pip install autopep8
+# remind about manual installation process
+echo "------------"
+echo "Reminder: autopep8 installation must happen manually for each virtualenv"
+echo "After entering virtualenv, use the following command:"
+echo "pip install autopep8"
+echo "Do this for all virtualenvs"
+echo "------------
