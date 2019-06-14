@@ -33,10 +33,16 @@ apt install -y maven
 
 # Setup the emacs init.el file to use meghanada
 mkdir ~/.emacs.d/javalisp/
-cp ../java-config.el ~/.emacs.d/javalisp/java-config.el
+cp ../custom-emacs/java-config.el ~/.emacs.d/javalisp/java-config.el
 echo "" >> ~/.emacs.d/init.el
 echo ";; Load Java setup from custom config source file" >> ~/.emacs.d/init.el
 echo "(load-file \"~/.emacs.d/javalisp/java-config.el\")" >> ~/.emacs.d/init.el
 
 # Source .bashrc
 source ~/.bashrc 
+
+# remind about manual git configuration
+echo "------------"
+echo "Reminder: git still needs to know who you are!"
+echo "git config --global user.email \"user.email@host.thing\" && git config --global user.name \"Name1 Name2\""
+echo "------------"

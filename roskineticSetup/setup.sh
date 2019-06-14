@@ -18,7 +18,7 @@ echo "alias em='emacs -q -l ~/.emacs.d/init.el'" >> ~/.bashrc
 
 # Add Python configuration file to init.el
 mkdir ~/.emacs.d/pylisp
-cp ../py-config.el ~/.emacs.d/pylisp/py-config.el
+cp ../custom-emacs/py-config.el ~/.emacs.d/pylisp/py-config.el
 echo "" >> ~/.emacs.d/init.el
 echo ";; Load Python setup from custom config source file" >> ~/.emacs.d/init.el
 echo "(load-file \"~/.emacs.d/pylisp/py-config.el\")" >> ~/.emacs.d/init.el
@@ -84,4 +84,10 @@ echo "Reminder: autopep8 installation must happen manually for each virtualenv"
 echo "After entering virtualenv, use the following command:"
 echo "pip install autopep8"
 echo "Do this for all virtualenvs"
-echo "------------
+echo "------------"
+
+# remind about manual git configuration
+echo "------------"
+echo "Reminder: git still needs to know who you are!"
+echo "git config --global user.email \"user.email@host.thing\" && git config --global user.name \"Name1 Name2\""
+echo "------------"
