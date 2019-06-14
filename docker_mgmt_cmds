@@ -97,7 +97,7 @@ function rkinetic() {
 
 function javabar() {
 		if [ -z $(docker ps -a --format "{{.Names}}" | grep "javabar") ]; then
-				docker_dock -s 1 -n javabar -i ubuntu:xenial -v javabar-work
+				docker_dock -s 1 -n javabar -i sswaminathan235/javabar:latest -v javabar-work
     else
 				docker_dock -s 2 -n javabar
     fi
