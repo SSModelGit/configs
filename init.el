@@ -113,3 +113,7 @@
   :bind ("C-x g" . magit-status)
   :config
 (setq magit-completing-read-function 'ivy-completing-read))
+
+;; dockerfile-mode
+(use-package dockerfile-mode :ensure t
+	:mode ("Dockerfile\\'" . dockerfile-mode))
