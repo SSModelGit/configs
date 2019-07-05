@@ -79,7 +79,7 @@ if [ "${s}" == 1 ]; then
 	   -e USER=$USER \
 	   -e ROS_HOSTNAME=$r \
 	   -e HOST=$h \
-		 -e HOME=/home/$USER \
+		 -e HOME=/home/$USER/volumes \
 	   --workdir=/home/$USER \
 	   -v $v:/home/$USER/volumes \
 	   -v "/home/$USER/:/home/$USER/host/:ro" \
