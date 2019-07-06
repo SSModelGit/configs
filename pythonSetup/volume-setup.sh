@@ -2,14 +2,8 @@
 
 ### Standard setup work
 
-# Install the software common properties package to be able to add PPAs
-apt update
-apt install -y software-properties-common
-
-# Install the better version of emacs
-add-apt-repository ppa:kelleyk/emacs
-apt update
-apt install -y emacs25
+# Install basic packages
+bash package-setup.sh 
 
 # Setup the emacs alias
 mkdir ~/.emacs.d/
@@ -23,10 +17,7 @@ echo "" >> ~/.emacs.d/init.el
 echo ";; Load Python setup from custom config source file" >> ~/.emacs.d/init.el
 echo "(load-file \"~/.emacs.d/pylisp/py-config.el\")" >> ~/.emacs.d/init.el
 
-# Creating Python2.7 virtual environment for ROS development
-
-apt -y install python-pip python-dev build-essential
-pip install --upgrade python pip virtualenv
+# Creating Python virtual environments (2.7 and 3.5)
 
 mkdir ~/.virtualenvs
 virtualenv -p python2.7 --system-site-packages ~/.virtualenvs/pyfoo

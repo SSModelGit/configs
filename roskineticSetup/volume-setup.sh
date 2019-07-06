@@ -1,13 +1,8 @@
 #!/bin/bash
 
 ### Standard setup work
-
-# Install the software common properties package to be able to add PPAs
-apt update
-apt install -y software-properties-common
-
-# Install the better version of emacs
-bash ../install-emacs.sh 
+# Install basic packages
+bash package-setup.sh
 
 # Setup the emacs alias
 mkdir ~/.emacs.d/
@@ -22,10 +17,6 @@ echo ";; Load Python setup from custom config source file" >> ~/.emacs.d/init.el
 echo "(load-file \"~/.emacs.d/pylisp/py-config.el\")" >> ~/.emacs.d/init.el
 
 ### Begin ros-kinetic specific setup work
-
-# Install rosemacs
-apt -y install ros-kinetic-rosemacs
-
 # Set it up / enable in the init.el config file for emacs
 echo "" >> ~/.emacs.d/init.el
 echo "(add-to-list 'load-path \"/opt/ros/kinetic/share/emacs/site-lisp\")" >> ~/.emacs.d/init.el
@@ -48,21 +39,12 @@ ln -s ~/repos/modelica_bridge modelica_bridge
 ln -s ~/repos/modelica_bridge_examples modelica_bridge_examples
 ln -s ~/repos/trans-atlantic-sailboat trans-atlantic-sailboat
 
-# # Before calling catkin_make, install appropriate dependencies
-apt install -y ros-kinetic-joy
-
 # # Now build
 cd .. && catkin_make
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 # Creating Python2.7 virtual environment for ROS development
-
 rosdep update
-
-apt install -y python-pip python-dev build-essential
-pip install --upgrade python pip virtualenv
-
-apt install -y python-rosinstall python-rosinstall-generator python-wstool build-essential
 
 mkdir ~/.virtualenvs
 virtualenv -p python2.7 --system-site-packages ~/.virtualenvs/rosk
