@@ -7,9 +7,7 @@ apt update
 apt install -y software-properties-common
 
 # Install the better version of emacs
-add-apt-repository ppa:kelleyk/emacs
-apt update
-apt install -y emacs25
+bash ../install-emacs.sh 
 
 # Setup the emacs alias
 mkdir ~/.emacs.d/
@@ -26,7 +24,6 @@ echo "(load-file \"~/.emacs.d/pylisp/py-config.el\")" >> ~/.emacs.d/init.el
 ### Begin ros-kinetic specific setup work
 
 # Install rosemacs
-apt update && apt -y upgrade && apt -y dist-upgrade && apt -y autoremove
 apt -y install ros-kinetic-rosemacs
 
 # Set it up / enable in the init.el config file for emacs
@@ -62,10 +59,10 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 rosdep update
 
-apt -y install python-pip python-dev build-essential
+apt install -y python-pip python-dev build-essential
 pip install --upgrade python pip virtualenv
 
-apt -y install python-rosinstall python-rosinstall-generator python-wstool build-essential
+apt install -y python-rosinstall python-rosinstall-generator python-wstool build-essential
 
 mkdir ~/.virtualenvs
 virtualenv -p python2.7 --system-site-packages ~/.virtualenvs/rosk
