@@ -5,6 +5,6 @@ apt update
 apt install -y software-properties-common
 
 # Install the better version of emacs
-add-apt-repository ppa:kelleyk/emacs
+add-apt-repository ppa:kelleyk/emacs -y
 apt update
-apt install emacs25
+apt install -y emacs25
