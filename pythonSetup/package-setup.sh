@@ -11,5 +11,5 @@ apt install -y software-properties-common
 bash ../custom-emacs/install-emacs.sh
 
 # Install packages for Python virtual envs
-apt -y install python-pip python-dev build-essential
+apt -y install python-pip python-dev python3.5-dev build-essential
 pip install --upgrade python pip virtualenv
