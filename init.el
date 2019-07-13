@@ -55,9 +55,14 @@
 
 (setq inhibit-startup-message t) ;; hide the startup message
 
-(use-package dracula-theme :ensure
-	:config
-	(load-theme 'dracula t)) ;; load material theme
+;; This is to use zenburn
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'zenburn t)
+
+;; This is to use dracula
+;; (use-package dracula-theme :ensure
+;; 	:config
+;; 	(load-theme 'dracula t)) ;; load material theme
 
 (use-package olivetti :ensure)
 
