@@ -1,17 +1,13 @@
 #!/bin/bash
 
-# Install the software common properties package to be able to add PPAs
-apt update
-apt install software-properties-common
-
-# Install the better version of emacs
-add-apt-repository ppa:kelleyk/emacs
-apt update
-apt install emacs25
+# Install basic packages
+bash package-setup.sh
 
 # Setup the emacs alias
-mkdir ~/.emacs.d/
-cp ../init.el ~/.emacs.d/init.el
+mkdir -p ~/.emacs.d/themes/
+cp init.el ~/.emacs.d/init.el
+wget https://raw.githubusercontent.com/bbatsov/zenburn-emacs/master/zenburn-theme.el
+mv zenburn-theme.el ~/.emacs.d/themes/
 echo "alias em='emacs -q -l ~/.emacs.d/init.el'" >> ~/.bashrc
 source ~/.bashrc
 

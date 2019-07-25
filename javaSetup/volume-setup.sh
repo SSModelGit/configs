@@ -2,14 +2,12 @@
 
 ### Standard setup work
 
-# Install basic packages
+# Install packages
 # This installs Oracle JDK 11 as the JDK package
 bash package-setup.sh
 
-# Setup the emacs alias
-mkdir ~/.emacs.d/
-cp ../init.el ~/.emacs.d/init.el
-echo "alias em='emacs -q -l ~/.emacs.d/init.el'" >> ~/.bashrc
+# Perform common container configs
+bash ../commonSetup/volume-setup.sh
 
 ### Begin java specific setup
 # Specify the $JAVA_HOME path
