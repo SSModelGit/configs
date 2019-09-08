@@ -59,11 +59,6 @@ if [ s == 1 ] && [ -z "${i}" ]; then
     usage
 fi
 
-w=$(docker inspect $i | jq '.[0] | .ContainerConfig.WorkingDir' | tr -d '"')
-if [ -z $w ]; then
-		w=/home/$USER
-fi
-
 if [ -z "${v}" ]; then
 		v=trashV
 fi
@@ -77,13 +72,17 @@ if [ -z "${h}" ]; then
 fi
 
 if [ "${s}" == 1 ]; then
+		w=$(docker inspect $i | jq '.[0] | .ContainerConfig.WorkingDir' | tr -d '"')
+		if [ -z $w ]; then
+				w=/home/$USER
+		fi
     xhost +local:
     docker run -it --net=host \
 	   -e DISPLAY=$DISPLAY \
 	   -e QT_GRAPHICSSYSTEM=native \
 	   -e ROS_HOSTNAME=$r \
 	   -e HOST=$h \
-		 -e HOME=$w/volumes \
+		 -e HOME=$w \
 	   --workdir=$w/volumes \
 	   -v $v:$w/volumes \
 	   -v "/home/$USER/:$w/host/:rw" \
