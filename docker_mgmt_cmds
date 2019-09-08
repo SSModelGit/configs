@@ -111,18 +111,18 @@ function pybar() {
     fi
 }
 
-function olin_gen() {
-		if [ -z $(docker ps -a --format "{{.Names}}" | grep "pybar") ]; then
-				docker_dock -s 1 -n olin-gen -i sswaminathan235/olin:general -v olinV
+function olinbar() {
+		if [ -z $(docker ps -a --format "{{.Names}}" | grep "olinbar") ]; then
+				docker_dock -s 1 -n olinbar -i sswaminathan235/olin:gen -v olinV
     else
-				docker_dock -s 2 -n olin-gen
+				docker_dock -s 2 -n olinbar
     fi
 }
 
 function comparch() {
-		if [ -z $(docker ps -a --format "{{.Names}}" | grep "pybar") ]; then
-				docker_dock -s 1 -n comparch -i sswaminathan235/olin:comparch -v olinV
+		if [ -z $(docker ps -a --format "{{.Names}}" | grep "comparch-bar") ]; then
+				docker_dock -s 1 -n comparch-bar -i sswaminathan235/olin:comparch -v olinV
     else
-				docker_dock -s 2 -n comparch
+				docker_dock -s 2 -n comparch-bar
     fi
 }
