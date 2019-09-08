@@ -65,7 +65,7 @@ function docker_dock() {
 		if [ ! -z "${v}" ]; then
 				cmd="${cmd} -v ${v}"
 		fi
-		
+
     if [ ! -z "${c}" ]; then
 				cmd="${cmd} -c ${c}"
     fi
@@ -88,7 +88,7 @@ function neato() {
 }
 
 function rkinetic() {
-    if [ -z $(docker ps -a --format "{{.Names}}" | grep "ros-kinetic") ]; then
+    if [ -z $(docker ps -a --format "{{.Names}}" | grep "kinetic-bar") ]; then
 				docker_dock -s 1 -n kinetic-bar -i sswaminathan235/dev-ros:kinetic -v rkineticV
     else
 				docker_dock -s 2 -n kinetic-bar
@@ -104,17 +104,25 @@ function javabar() {
 }
 
 function pybar() {
-		if [ -z $(docker ps -a --format "{{.Names}}" | grep "javabar") ]; then
+		if [ -z $(docker ps -a --format "{{.Names}}" | grep "pybar") ]; then
 				docker_dock -s 1 -n pybar -i sswaminathan235/pybar:latest -v pybar-work
     else
 				docker_dock -s 2 -n pybar
     fi
 }
 
-function rhydro() {
-    if [ -z $(docker ps -a --format "{{.Names}}" | grep "ros-hydro") ]; then
-				docker_dock -s 1 -n hydro-bar -i sswaminathan235/dev-ros:hydro -v rhydroV
+function olin_gen() {
+		if [ -z $(docker ps -a --format "{{.Names}}" | grep "pybar") ]; then
+				docker_dock -s 1 -n olin-gen -i sswaminathan235/olin:general -v olinV
     else
-				docker_dock -s 2 -n hydro-bar
+				docker_dock -s 2 -n olin-gen
+    fi
+}
+
+function comparch() {
+		if [ -z $(docker ps -a --format "{{.Names}}" | grep "pybar") ]; then
+				docker_dock -s 1 -n comparch -i sswaminathan235/olin:comparch -v olinV
+    else
+				docker_dock -s 2 -n comparch
     fi
 }

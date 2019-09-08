@@ -80,10 +80,11 @@ if [ "${s}" == 1 ]; then
 	   -e ROS_HOSTNAME=$r \
 	   -e HOST=$h \
 		 -e HOME=/home/$USER/volumes \
-	   --workdir=/home/$USER \
+	   --workdir=/home/$USER/volumes \
 	   -v $v:/home/$USER/volumes \
-	   -v "/home/$USER/:/home/$USER/host/:ro" \
+	   -v "/home/$USER/:/home/$USER/host/:rw" \
 	   -v "/media/$USER/:/media/$USER/:rw" \
+		 -v "/dev/:/dev/:rw" \
 	   --name=$n \
 	   $i $c
 else

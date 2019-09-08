@@ -8,8 +8,8 @@ function apt_install() {
 }
 
 function olin_mount() {
-    sudo mount -t cifs //fsvs01/Users/Students/2022/sswaminathan ~/olin_share/ -o username=sswaminathan,workgroup=olin.edu,uid=sswaminathan
-    sudo mount -t cifs //fsvs01/Public ~/olin_public_share/ -o username=sswaminathan,workgroup=olin.edu,uid=sswaminathan
+    sudo mount -t cifs //fsvs01/Users/Students/2022/sswaminathan ~/olin_share/ -o username=sswaminathan,workgroup=olin.edu,uid=$USER
+    sudo mount -t cifs //fsvs01/Public ~/olin_public_share/ -o username=sswaminathan,workgroup=olin.edu,uid=$USER
 }
 
 function olin_unmount() {
@@ -18,3 +18,4 @@ function olin_unmount() {
     sudo umount ~/olin_public_share/
 }
 
+alias balenaEtcher='~/.local/lib/etcher.AppImage'
