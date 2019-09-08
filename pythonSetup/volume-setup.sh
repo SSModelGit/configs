@@ -2,13 +2,13 @@
 
 ### Standard setup work
 
-# Install basic packages
-bash package-setup.sh 
+# Install packages
+bash package-setup.sh
 
-# Setup the emacs alias
-mkdir ~/.emacs.d/
-cp ../init.el ~/.emacs.d/init.el
-echo "alias em='emacs -q -l ~/.emacs.d/init.el'" >> ~/.bashrc
+# Perform common container configs
+bash ../commonSetup/volume-setup.sh
+
+### Python setup work
 
 # Add Python configuration file to init.el
 mkdir ~/.emacs.d/pylisp

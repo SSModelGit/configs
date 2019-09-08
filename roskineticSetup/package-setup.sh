@@ -3,12 +3,10 @@
 # Package setup script
 # Installs packages, required for each new container
 
-# Install the software common properties package to be able to add PPAs
-apt update
-apt install -y software-properties-common
+# Install common container packages
+bash ../commonSetup/package-setup.sh
 
-# Install the better version of emacs
-bash ../custom-emacs/install-emacs.sh
+# Add rosemacs package for emacs
 apt -y install ros-kinetic-rosemacs
 
 # Install ros packages
